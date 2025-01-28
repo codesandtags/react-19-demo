@@ -13,8 +13,6 @@ export default function Order() {
   const [loading, setLoading] = useState(true);
 
   async function fetchPizzaTypes() {
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 10000)); // 10 second delay
     const pizzaRes = await fetch("/api/pizzas");
     const pizzaJson = await pizzaRes.json();
 
@@ -23,16 +21,19 @@ export default function Order() {
     });
 
     setPizzaTypes(pizzaJson);
+    setLoading(false);
   }
 
   useEffect(() => {
     fetchPizzaTypes();
   }, []);
 
-  let price, selectedPizza;
+  let price = 0;
+  let selectedPizza;
 
   if (!loading) {
     selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
+    price = selectedPizza && intl.format(selectedPizza.sizes[pizzaSize]);
   }
 
   return (
@@ -48,9 +49,6 @@ export default function Order() {
               value={pizzaType}
               onChange={(e) => setPizzaType(e.target.value)}
             >
-              {/* <option value="pepperoni">Pepperoni Pizza</option>
-              <option value="hawaiian">Hawaiian Pizza</option>
-              <option value="big_meat">Big Meat Pizza</option> */}
               {pizzaTypes.map((pizza) => (
                 <option key={pizza.id} value={pizza.id}>
                   {pizza.name}
@@ -99,11 +97,17 @@ export default function Order() {
           </div>
         </div>
         <div>
-          <Pizza
-            name={pizzaType}
-            description="The delicious one"
-            image="/public/pizzas/pepperoni.webp"
-          />
+          {selectedPizza ? (
+            <>
+              <Pizza
+                name={selectedPizza.name}
+                description={selectedPizza.description}
+                image={selectedPizza.image}
+              />
+              <div>Size: {pizzaSize}</div>
+              <div>Price: {price}</div>
+            </>
+          ) : null}
         </div>
       </form>
     </div>
