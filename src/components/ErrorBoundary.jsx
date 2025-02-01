@@ -18,8 +18,8 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <h2>
-          There was an error with this listing. <br />
+        <div>
+          <h2>There was an error with this listing.</h2> <br />
           <button onClick={() => this.setState({ hasError: false })}>
             Try again?
           </button>
@@ -27,7 +27,7 @@ class ErrorBoundary extends Component {
             Otherwise, <Link to="/">Click here</Link> to go back to the home
             page.
           </p>
-        </h2>
+        </div>
       );
     }
 

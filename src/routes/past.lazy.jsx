@@ -6,9 +6,19 @@ import getPastOrder from "../api/getPastOrder";
 import Modal from "../components/Modal";
 import priceConverter from "../utils/priceConverter";
 
+import ErrorBoundary from "../components/ErrorBoundary";
+
 export const Route = createLazyFileRoute("/past")({
-  component: PastOrdersRoute,
+  component: ErrorBoundaryWrappedPastOrderRoutes,
 });
+
+function ErrorBoundaryWrappedPastOrderRoutes() {
+  return (
+    <ErrorBoundary>
+      <PastOrdersRoute />
+    </ErrorBoundary>
+  );
+}
 
 function PastOrdersRoute() {
   const [page, setPage] = useState(1);
@@ -27,9 +37,6 @@ function PastOrdersRoute() {
     staleTime: 24 * 60 * 60 * 1000,
     enabled: !!focusedOrder,
   });
-
-  if (!isLoadingPastOrder) {
-  }
 
   if (isLoading) {
     return (
