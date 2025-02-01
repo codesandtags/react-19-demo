@@ -9,10 +9,12 @@ import PizzaOfTheDay from "../components/PizzaOfTheDay";
 import Header from "../components/Header";
 
 import { CartContext } from "../state/contexts";
+import { useResizeWindow } from "../hooks/useResizeWindow";
 
 export const Route = createRootRoute({
   component: () => {
     const cartHook = useState([]);
+    const windowSize = useResizeWindow();
 
     return (
       <>
