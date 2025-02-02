@@ -1,7 +1,7 @@
 import { useDebugValue, useEffect, useState } from "react";
 
 export function usePizzaOfTheDay() {
-  const [pizzaOfTheDay, setPizzaOfTheDay] = useState();
+  const [pizzaOfTheDay, setPizzaOfTheDay] = useState(null);
 
   useDebugValue(
     pizzaOfTheDay

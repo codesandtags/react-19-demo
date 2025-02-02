@@ -22,4 +22,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react", "react-dom"],
   },
+  test: {
+    globals: true,
+    environment: "happy-dom",
+    watch: false,
+  },
 });

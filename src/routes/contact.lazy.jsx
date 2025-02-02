@@ -23,10 +23,10 @@ function ContactRoute() {
 
   return (
     <div className="contact">
-      <h3>Contact Us</h3>
+      <h2>Contact Us</h2>
       {mutation.isSuccess ? (
         <>
-          <p>Submitted!</p>
+          <h3>Submitted!</h3>
           <p>
             Thanks for sending your message. We will take care of your message.
           </p>
