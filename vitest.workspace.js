@@ -4,7 +4,7 @@ export default defineWorkspace([
   {
     extends: "./vite.config.js",
     test: {
-      include: ["**/*.node.test.{js,jsx}"],
+      include: ["**/*.test.{js,jsx}"],
       name: "happy-dom",
       environment: "happy-dom",
     },

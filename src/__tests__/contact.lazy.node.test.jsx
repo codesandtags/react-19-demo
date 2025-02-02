@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import { test, describe, cleanup, forEach, vi, expect } from "vitest";
+import { render } from "@testing-library/react";
+import { test, describe, vi, expect } from "vitest";
 import createFetchMock from "vitest-fetch-mock";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-import { Route } from "../contact.lazy";
+import { Route } from "../routes/contact.lazy";
 
 const queryClient = new QueryClient();
 
