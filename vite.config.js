@@ -26,5 +26,8 @@ export default defineConfig({
     globals: true,
     environment: "happy-dom",
     watch: false,
+    coverage: {
+      reporter: ["text", "json", "html"],
+    },
   },
 });
